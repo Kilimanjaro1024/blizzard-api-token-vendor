@@ -1,3 +1,7 @@
+DISCLAIMER: This is a forked repo of an example provided by Blizzard for generating api tokens. I have modified it for my own purposes, most of this code was not written by me.
+
+Link to original Repo: https://github.com/Blizzard/node-signature-generator 
+
 # Sample WoW Signature Generator - Node.js
 
 This application serves as an example node.js application for consuming OAuth APIs exposed for [World of Warcraft](https://develop.battle.net/documentation/world-of-warcraft). The app leverages the Client Credentials flow to retrieve an OAuth token and then generate a PNG image for a given character.

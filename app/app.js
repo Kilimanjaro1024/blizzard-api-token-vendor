@@ -4,6 +4,7 @@ const config = require("./config");
 const OauthClient = require("./oauth/client.js");
 const CharacterService = require("./services/CharacterService");
 const SignatureService = require("./services/SignatureService");
+const cors = require("cors")
 
 const oauthOptions = {
   client: {
@@ -18,11 +19,16 @@ const oauthOptions = {
 const oauthClient = new OauthClient({ oauthOptions });
 const characterService = new CharacterService(oauthClient, config);
 const signatureService = new SignatureService(config);
+let token = null
 
 const app = express();
+app.use(cors())
 
 app.get("/", async (req, res, next) => {
-  res.status(404).send("No route found for `/`. Refer to Readme.md for available routes.");
+  res.json({
+    status: 200,
+    message: token
+  })
 });
 
 app.get("/signature", async (req, res, next) => {
@@ -45,6 +51,6 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = async () => {
-  await oauthClient.getToken();
+  token = await oauthClient.getToken();
   return app;
 };

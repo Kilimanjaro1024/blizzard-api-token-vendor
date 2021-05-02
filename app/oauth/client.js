@@ -1,6 +1,7 @@
 const oauth2 = require("simple-oauth2");
-
+let token = ""
 class OAuthClient {
+    
     constructor({
         oauthOptions
     }) {
@@ -14,7 +15,9 @@ class OAuthClient {
                 const token = await this.client.clientCredentials.getToken();
                 this.token = this.client.accessToken.create(token);
             }
-            return this._reduceToken(this.token);
+            token = this._reduceToken(this.token)
+            
+            return token;
         } catch (err) {
             console.error(`Failed to retrieve client credentials oauth token: ${err.message}`);
             throw err;
